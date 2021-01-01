@@ -42,16 +42,21 @@ public class NotesFragment extends Fragment implements OnClickListenerNote {
                 courseNotesViewModel = new ViewModelProvider(this)
                 .get(courseNotesViewModel.class);
 
-        courseNotesViewModel.getAllNotes().observe(getViewLifecycleOwner(), notes -> {
-            Toast.makeText(getContext(),"Courses Notes are: "+ notes.size(), Toast.LENGTH_LONG).show();
-            recycleViewSetup(notes);
-        });
+        LoadAllNotes();
         AddNote.setOnClickListener(view -> {
             Navigation.findNavController(getView()).navigate(R.id.addNoteGlobal);
         });
 
         return root;
     }
+
+    private void LoadAllNotes() {
+        courseNotesViewModel.getAllNotes().observe(getViewLifecycleOwner(), notes -> {
+            Toast.makeText(getContext(),"Courses Notes are: "+ notes.size(), Toast.LENGTH_LONG).show();
+            recycleViewSetup(notes);
+        });
+    }
+
     private void recycleViewSetup(List<Note> notes) {
         recyclerView.setHasFixedSize(true);
         noteAdapter = new NoteAdapter();
@@ -67,9 +72,7 @@ public class NotesFragment extends Fragment implements OnClickListenerNote {
 
 
     }
-
-
-
+    
     @Override
     public void OnDelete(Note note) {
         //TODO first Fire a dialog for confirmation (DONE)
@@ -81,9 +84,7 @@ public class NotesFragment extends Fragment implements OnClickListenerNote {
             //new DeleteNote().execute(note);
             courseNotesViewModel.deleteNote(note).observe(this, delete -> {
                 if(delete){
-                    Toast.makeText(getContext(),
-                            "Deleted successfully",
-                            Toast.LENGTH_LONG).show();
+                    LoadAllNotes();
                 }
             });
         });
