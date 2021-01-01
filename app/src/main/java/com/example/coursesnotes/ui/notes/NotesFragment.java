@@ -72,7 +72,7 @@ public class NotesFragment extends Fragment implements OnClickListenerNote {
 
 
     }
-    
+
     @Override
     public void OnDelete(Note note) {
         //TODO first Fire a dialog for confirmation (DONE)
