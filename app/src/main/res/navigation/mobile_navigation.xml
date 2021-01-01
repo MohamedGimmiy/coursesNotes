@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/courses_main">
+
+    <fragment
+        android:id="@+id/courses_main"
+        android:name="com.example.coursesnotes.ui.courses.CoursesFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_courses_main_to_itemFragment"
+            app:destination="@id/notesFragment" />
+        <action
+            android:id="@+id/action_courses_main_to_addCourse"
+            app:destination="@id/addEditCourse" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/notes_side"
+        android:name="com.example.coursesnotes.ui.notes.NotesFragment"
+        android:label="notes"
+        tools:layout="@layout/fragment_notes">
+        <action
+            android:id="@+id/action_notes_side_to_addEditNote"
+            app:destination="@id/addEditNote" />
+        <action
+            android:id="@+id/action_notes_side_to_addNoteGlobal"
+            app:destination="@id/addNoteGlobal" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/about_us_side"
+        android:name="com.example.coursesnotes.ui.aboutUs.aboutUsFragment"
+        android:label="aboutUs"
+        tools:layout="@layout/fragment_aboutus" />
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.example.coursesnotes.ui.coursesNotes.coursesNotesFragment"
+        android:label="notes"
+        tools:layout="@layout/fragment_item_list">
+        <argument
+            android:name="courseId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_notesFragment_to_addEditNote"
+            app:destination="@id/addEditNote" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditNote"
+        android:name="com.example.coursesnotes.ui.addEditNote.AddEditNoteFragment"
+        android:label="addEditNote"
+        tools:layout="@layout/fragment_add_edit_note">
+        <action
+            android:id="@+id/action_addEditNote_to_notesFragment"
+            app:destination="@id/notesFragment" />
+        <action
+            android:id="@+id/action_addEditNote_to_notes_side"
+            app:destination="@id/notes_side" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditCourse"
+        android:name="com.example.coursesnotes.ui.addEditCourse.AddEditCourseFragment"
+        android:label="addEditCourse"
+        tools:layout="@layout/fragment_add_course" />
+    <fragment
+        android:id="@+id/addNoteGlobal"
+        android:name="com.example.coursesnotes.ui.addEditNote.addNoteGlobal"
+        android:label="add Note"
+        tools:layout="@layout/fragment_add_note_global" />
+</navigation>
