@@ -1,3 +1,3 @@
-## Courses Notes App
+## Courses-Notes-App
 
-![GitHub Logo](android project v2.jpg)
+![GitHub Logo](project.jpg)
