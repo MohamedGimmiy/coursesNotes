@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +19,7 @@ import com.example.coursesnotes.adapters.NoteAdapter;
 import com.example.coursesnotes.models.Note;
 import com.example.coursesnotes.ui.listeners.OnClickListenerNote;
 import com.example.coursesnotes.viewModel.courseNotesViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -29,11 +28,11 @@ public class NotesFragment extends Fragment implements OnClickListenerNote {
     private courseNotesViewModel courseNotesViewModel;
     private RecyclerView recyclerView;
     private NoteAdapter noteAdapter;
-    private Button AddNote;
+    private FloatingActionButton AddNote;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.activity_notes, container, false);
+        View root = inflater.inflate(R.layout.fragment_notes, container, false);
 
         recyclerView = root.findViewById(R.id.notesList);
         AddNote = root.findViewById(R.id.AddNote);
@@ -43,18 +42,13 @@ public class NotesFragment extends Fragment implements OnClickListenerNote {
                 .get(courseNotesViewModel.class);
 
         LoadAllNotes();
-        AddNote.setOnClickListener(view -> {
-            Navigation.findNavController(getView()).navigate(R.id.addNoteGlobal);
-        });
+        AddNote.setOnClickListener(view -> Navigation.findNavController(requireView()).navigate(R.id.addNoteGlobal));
 
         return root;
     }
 
     private void LoadAllNotes() {
-        courseNotesViewModel.getAllNotes().observe(getViewLifecycleOwner(), notes -> {
-            Toast.makeText(getContext(),"Courses Notes are: "+ notes.size(), Toast.LENGTH_LONG).show();
-            recycleViewSetup(notes);
-        });
+        courseNotesViewModel.getAllNotes().observe(getViewLifecycleOwner(), notes -> recycleViewSetup(notes));
     }
 
     private void recycleViewSetup(List<Note> notes) {
@@ -98,7 +92,7 @@ public class NotesFragment extends Fragment implements OnClickListenerNote {
         Bundle bundle = new Bundle();
         bundle.putParcelable("note", note);
         bundle.putBoolean("addEdit", false);
-        Navigation.findNavController(getView()).navigate(R.id.addEditNote, bundle);
+        Navigation.findNavController(requireView()).navigate(R.id.addEditNote, bundle);
 
     }
 }

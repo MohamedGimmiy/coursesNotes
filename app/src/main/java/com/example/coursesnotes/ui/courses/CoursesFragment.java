@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -19,15 +18,17 @@ import com.example.coursesnotes.adapters.CourseAdapter;
 import com.example.coursesnotes.models.Course;
 import com.example.coursesnotes.ui.listeners.OnClickListener;
 import com.example.coursesnotes.viewModel.courseNotesViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CoursesFragment extends Fragment implements OnClickListener {
 
     private static courseNotesViewModel courseNotesViewModel;
     private int courseId = -1;
     private CourseAdapter courseAdapter;
-    private Button addCourseButton;
+    private FloatingActionButton addCourseButton;
     private RecyclerView recyclerView;
 
     public CoursesFragment(){}
@@ -38,7 +39,7 @@ public class CoursesFragment extends Fragment implements OnClickListener {
         //1. view model
 
         //2. inflate fragment_home
-        View root = inflater.inflate(R.layout.activity_courses, container, false);
+        View root = inflater.inflate(R.layout.fragment_courses, container, false);
         recyclerView = root.findViewById(R.id.coursesList);
         addCourseButton = root.findViewById(R.id.AddCourse);
         //notesDatabase = NotesDatabase.getInstance(getContext());
@@ -75,7 +76,7 @@ public class CoursesFragment extends Fragment implements OnClickListener {
         Bundle bundle = new Bundle();
         bundle.putInt("courseId", id);
         fragment.setArguments(bundle);
-        Navigation.findNavController(getView()).navigate(R.id.notesFragment, bundle);
+        Navigation.findNavController(requireView()).navigate(R.id.notesFragment, bundle);
     }
 
     @Override
@@ -103,6 +104,6 @@ public class CoursesFragment extends Fragment implements OnClickListener {
         Bundle bundle = new Bundle();
         bundle.putParcelable("course", course);
         bundle.putBoolean("addEdit", false);
-        Navigation.findNavController(getView()).navigate(R.id.addEditCourse, bundle);
+        Navigation.findNavController(requireView()).navigate(R.id.addEditCourse, bundle);
     }
 }

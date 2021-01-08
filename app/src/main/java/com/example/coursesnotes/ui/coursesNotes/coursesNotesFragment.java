@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.coursesnotes.R;
 import com.example.coursesnotes.adapters.NoteAdapter;
 import com.example.coursesnotes.models.Note;
 import com.example.coursesnotes.ui.listeners.OnClickListenerNote;
 import com.example.coursesnotes.viewModel.courseNotesViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class coursesNotesFragment extends Fragment implements OnClickListenerNot
     private courseNotesViewModel courseNotesViewModel;
     private RecyclerView recyclerView;
     private NoteAdapter noteAdapter;
-    private Button addEditNote;
+    private FloatingActionButton addEditNote;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -52,7 +52,7 @@ public class coursesNotesFragment extends Fragment implements OnClickListenerNot
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_notes, container, false);
+        View view = inflater.inflate(R.layout.fragment_notes, container, false);
 
 
         recyclerView = view.findViewById(R.id.notesList);
@@ -80,9 +80,7 @@ public class coursesNotesFragment extends Fragment implements OnClickListenerNot
 
     private void loadNotes() {
         courseNotesViewModel.getAllNotesByCourse(courseId).observe(getViewLifecycleOwner(),
-                notes -> {
-            recycleViewSetup(notes);
-        });
+                this::recycleViewSetup);
     }
 
     private void recycleViewSetup(List<Note> notes) {
@@ -121,6 +119,6 @@ public class coursesNotesFragment extends Fragment implements OnClickListenerNot
         Bundle bundle = new Bundle();
         bundle.putParcelable("note", note);
         bundle.putBoolean("addEdit", false);
-        Navigation.findNavController(getView()).navigate(R.id.addEditNote, bundle);
+        Navigation.findNavController(requireView()).navigate(R.id.addEditNote, bundle);
     }
 }

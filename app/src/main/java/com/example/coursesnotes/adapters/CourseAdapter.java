@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.coursesnotes.R;
 import com.example.coursesnotes.models.Course;
 import com.example.coursesnotes.ui.listeners.OnClickListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.coursesVie
 
     public static class coursesViewHolder extends RecyclerView.ViewHolder{
         TextView courseName, courseDescription;
-        Button DeleteCourse, EditCourse;
+        FloatingActionButton DeleteCourse, EditCourse;
         public coursesViewHolder(@NonNull View itemView) {
             super(itemView);
             courseName = itemView.findViewById(R.id.courseName);
@@ -60,17 +61,11 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.coursesVie
         void bind(Course course, OnClickListener listener){
             courseName.setText(course.getCourseName());
             courseDescription.setText(course.getCourseDescription());
-            itemView.setOnClickListener(view -> {
-                listener.OnClick(course.getCourseId());
-            });
+            itemView.setOnClickListener(view -> listener.OnClick(course.getCourseId()));
 
-            DeleteCourse.setOnClickListener(view -> {
-                listener.OnDelete(course);
-            });
+            DeleteCourse.setOnClickListener(view -> listener.OnDelete(course));
 
-            EditCourse.setOnClickListener(view -> {
-                listener.OnUpdate(course);
-            });
+            EditCourse.setOnClickListener(view -> listener.OnUpdate(course));
         }
     }
 }

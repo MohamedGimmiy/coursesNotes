@@ -4,7 +4,7 @@ plugins {
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.coursesnotes"
@@ -27,18 +27,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    sourceSets {
-        main {
-            res.srcDirs = ['src/main/res',
-                           'src/main/res/layouts/core',
-            ]
-        }
-    }
+//    sourceSets {
+//        main {
+//            res.srcDirs = ['src/main/res',
+//                           'src/main/res/layouts/core',
+//            ]
+//        }
+//    }
 }
 apply plugin: "androidx.navigation.safeargs"
 
 dependencies {
-    def room_version = "2.2.5"
+    def room_version = "2.2.6"
     def lifecycle_version = "2.2.0"
     def nav_version = "2.3.2"
 
@@ -64,7 +64,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

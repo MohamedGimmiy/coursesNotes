@@ -56,12 +56,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         NavController navHost = Navigation.findNavController(this,R.id.nav_host_fragment);
-        switch (item.getItemId()){
-            case R.id.action_aboutUs:
-                navHost.navigate(R.id.about_us_side);
-                return true;
-            default:
-                super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_aboutUs) {
+            navHost.navigate(R.id.about_us_side);
+            return true;
+        } else {
+            super.onOptionsItemSelected(item);
         }
 
         return false;
@@ -72,5 +71,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+    public void setActionBarTitle(String title){
+        getActionBar().setTitle(title);
     }
 }

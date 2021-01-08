@@ -9,7 +9,7 @@
         android:id="@+id/courses_main"
         android:name="com.example.coursesnotes.ui.courses.CoursesFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_courses" >
         <action
             android:id="@+id/action_courses_main_to_itemFragment"
             app:destination="@id/notesFragment" />
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/notes_side"
         android:name="com.example.coursesnotes.ui.notes.NotesFragment"
-        android:label="notes"
+        android:label="Notes"
         tools:layout="@layout/fragment_notes">
         <action
             android:id="@+id/action_notes_side_to_addEditNote"
@@ -34,12 +34,12 @@
     <fragment
         android:id="@+id/about_us_side"
         android:name="com.example.coursesnotes.ui.aboutUs.aboutUsFragment"
-        android:label="aboutUs"
+        android:label="About us"
         tools:layout="@layout/fragment_aboutus" />
     <fragment
         android:id="@+id/notesFragment"
         android:name="com.example.coursesnotes.ui.coursesNotes.coursesNotesFragment"
-        android:label="notes"
+        android:label="Notes"
         tools:layout="@layout/fragment_item_list">
         <argument
             android:name="courseId"
@@ -51,7 +51,7 @@
     <fragment
         android:id="@+id/addEditNote"
         android:name="com.example.coursesnotes.ui.addEditNote.AddEditNoteFragment"
-        android:label="addEditNote"
+        android:label=""
         tools:layout="@layout/fragment_add_edit_note">
         <action
             android:id="@+id/action_addEditNote_to_notesFragment"
@@ -63,7 +63,7 @@
     <fragment
         android:id="@+id/addEditCourse"
         android:name="com.example.coursesnotes.ui.addEditCourse.AddEditCourseFragment"
-        android:label="addEditCourse"
+        android:label=""
         tools:layout="@layout/fragment_add_course" />
     <fragment
         android:id="@+id/addNoteGlobal"

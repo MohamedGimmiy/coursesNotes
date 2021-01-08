@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.coursesnotes.R;
 import com.example.coursesnotes.models.Note;
 import com.example.coursesnotes.ui.listeners.OnClickListenerNote;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -46,9 +47,7 @@ public class NoteAdapter extends  RecyclerView.Adapter<NoteAdapter.notesViewHold
         holder.noteName.setText(currentNote.getName());
         holder.noteDescription.setText(currentNote.getDescription());
 
-        holder.Edit.setOnClickListener(view -> {
-            onClickListenerNote.OnUpdate(currentNote);
-        });
+        holder.Edit.setOnClickListener(view -> onClickListenerNote.OnUpdate(currentNote));
         holder.Delete.setOnClickListener(view -> {
             Log.e("error", "is an error" + currentNote.getName());
             onClickListenerNote.OnDelete(currentNote);
@@ -62,7 +61,7 @@ public class NoteAdapter extends  RecyclerView.Adapter<NoteAdapter.notesViewHold
 
     public static class notesViewHolder extends RecyclerView.ViewHolder {
         private TextView noteName, noteDescription;
-        private Button Delete, Edit;
+        private FloatingActionButton Delete, Edit;
         public notesViewHolder(@NonNull View itemView) {
             super(itemView);
             noteName = itemView.findViewById(R.id.noteName);

@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.coursesnotes.MainActivity;
 import com.example.coursesnotes.R;
 import com.example.coursesnotes.models.Note;
 import com.example.coursesnotes.viewModel.courseNotesViewModel;
@@ -68,6 +69,7 @@ public class AddEditNoteFragment extends Fragment {
         //TODO 1.adding a note
         if(isAddEdit){
             // Add
+            ((MainActivity)getActivity()).getSupportActionBar().setTitle("Add Note");
             AddEdit.setOnClickListener(view1 -> {
 
                 //Validation
@@ -87,6 +89,7 @@ public class AddEditNoteFragment extends Fragment {
 
         } else {
             // Edit
+            ((MainActivity)getActivity()).getSupportActionBar().setTitle(note.getName());
             noteName.setText(note.getName());
             noteDescription.setText(note.getDescription());
             AddEdit.setText("Edit");
@@ -102,9 +105,7 @@ public class AddEditNoteFragment extends Fragment {
             });
         }
 
-        Cancel.setOnClickListener(view1 -> {
-            Navigation.findNavController(view).popBackStack();
-        });
+        Cancel.setOnClickListener(view1 -> Navigation.findNavController(view).popBackStack());
 
         return view;
     }

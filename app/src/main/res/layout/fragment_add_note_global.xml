@@ -3,56 +3,95 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-
-    <EditText
-        android:id="@+id/NoteNameField"
-        android:layout_width="wrap_content"
+    android:background="@color/grey">
+    <LinearLayout
+        android:id="@+id/controls"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginVertical="15dp"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/AddNoteButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="@color/white"
+            app:icon="@drawable/ic_baseline_save_24"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+            app:iconGravity="textStart"
+            app:iconTint="@color/light_dark"
+            app:iconPadding="10dp"
+            android:text="@string/save"
+            android:textColor="@color/light_dark"/>
+        <Button
+            android:id="@+id/CancelNoteButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:backgroundTint="@color/white"
+            app:icon="@drawable/ic_baseline_cancel_24"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+            app:iconGravity="textStart"
+            app:iconTint="@color/light_dark"
+            app:iconPadding="10dp"
+            android:text="@string/cancel"
+            android:textColor="@color/light_dark"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/controls"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Please Enter Note name"
-        android:hint="Please Enter Note name"/>
-
-    <EditText
-        android:id="@+id/NoteDescriptionField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/NoteNameField"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Please Enter Note name"
-        android:hint="Please Enter Note Description"/>
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/NoteDescriptionField"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-    <Button
-        android:id="@+id/AddNoteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/CancelNoteButton"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"/>
-
-    <Button
-        android:id="@+id/CancelNoteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@id/AddNoteButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"/>
+        app:layout_constraintBottom_toBottomOf="parent">
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"/>
+        <EditText
+            android:id="@+id/NoteNameField"
+            android:background="@null"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="@string/note_name"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="25dp"
+            android:background="#DCDBDB"/>
+        <EditText
+            android:id="@+id/NoteDescriptionField"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginVertical="30dp"
+            android:gravity="start|top"
+            android:background="@null"
+            android:inputType="text"
+            android:textColor="@color/light_dark"
+            app:layout_constraintTop_toBottomOf="@+id/CourseNameField"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="@string/note_description"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

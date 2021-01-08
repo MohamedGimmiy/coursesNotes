@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.coursesnotes.MainActivity;
 import com.example.coursesnotes.R;
 import com.example.coursesnotes.models.Course;
 import com.example.coursesnotes.viewModel.courseNotesViewModel;
@@ -60,6 +61,7 @@ public class AddEditCourseFragment extends Fragment {
 
 
         if(isAddEdit){
+            ((MainActivity)getActivity()).getSupportActionBar().setTitle("Add course");
             AddEdit.setOnClickListener(view1 -> {
                 if (isNotValid()) return;
                 courseNotesViewModel.addCourse(
@@ -74,6 +76,7 @@ public class AddEditCourseFragment extends Fragment {
         }
         else {
             // Edit
+            ((MainActivity)getActivity()).getSupportActionBar().setTitle(course.getCourseName());
             courseName.setText(course.getCourseName());
             courseDescription.setText(course.getCourseDescription());
             AddEdit.setText("Edit");
@@ -90,9 +93,7 @@ public class AddEditCourseFragment extends Fragment {
         }
 
 
-        Cancel.setOnClickListener(view1 -> {
-            Navigation.findNavController(view).popBackStack();
-        });
+        Cancel.setOnClickListener(view1 -> Navigation.findNavController(view).popBackStack());
 
         return view;
     }
